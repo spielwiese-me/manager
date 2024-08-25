@@ -2,6 +2,7 @@
 .gitignore
 .idea
 vendor
+**/node_modules
 docker-compose*
 docker/web
 README.md
