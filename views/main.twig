@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="de">
+    <head>
+        <title>Spielwiese.me Manager</title>
+        <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css">
+        <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <style>
+            body {
+                height: 100vh;
+            }
+        </style>
+        <script>
+            window.addEventListener('load', () => {
+                {% if loggedIn  %}
+                    document.querySelector('#logout-btn').addEventListener(
+                        'click',
+                        () => fetch('/api/logout', { method: 'POST' })
+                            .then(() => location.reload()),
+                    );
+                {% else %}
+                    const loginForm = document.querySelector('#login-form');
+                    loginForm.addEventListener('submit', event => {
+                        event.preventDefault();
+
+                        fetch('/api/login', {
+                            method: 'POST',
+                            headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                'password': (new FormData(loginForm)).get('password'),
+                            }),
+                        })
+                            .then(response => response.json())
+                            .then(({ success }) => {
+                                if (success) {
+                                    location.reload();
+                                } else {
+                                    alert('Falsches Passwort');
+                                }
+                            })
+
+                        return false;
+                    });
+                {% endif %}
+
+                document.querySelectorAll('.update-btn').forEach(element => element.addEventListener('click', () => {
+                    const container = element.getAttribute('data-container');
+
+                    fetch('/api/container/update', {
+                        method: 'POST',
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            'container': container,
+                        }),
+                    }).then(() => location.reload());
+                }));
+
+                document.querySelectorAll('.restart-btn').forEach(element => element.addEventListener('click', () => {
+                    const container = element.getAttribute('data-container');
+
+                    fetch('/api/container/restart', {
+                        method: 'POST',
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            'container': container,
+                        }),
+                    }).then(() => location.reload());
+                }));
+            });
+        </script>
+    </head>
+    <body class="bg-light d-flex flex-column">
+        <nav class="navbar navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand">Spielwiese.me Manager</a>
+                {% if loggedIn  %}
+                    <button id="logout-btn" class="btn btn-danger">
+                        Abmelden
+                    </button>
+                {% else %}
+                    <form id="login-form" class="d-flex">
+                        <input class="form-control me-2" type="password" name="password" placeholder="Passwort" minlength="1" required>
+                        <button class="btn btn-primary" type="submit">Anmelden</button>
+                    </form>
+                {% endif %}
+            </div>
+        </nav>
+        <main class="flex-grow-1 p-3 overflow-hidden position-relative">
+            <div class="position-absolute top-0 start-0 bottom-0 end-0 overflow-auto">
+                <div class="container bg-white shadow p-3">
+                    {% for container in managed %}
+                        {# @var container \Spielwiese\Manager\Container\Managed #}
+                        <div class="d-inline-block w-25">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ container.name }}</h5>
+                                    <h6 class="card-subtitle mb-2 text-muted"><code>{{ container.path }}</code></h6>
+                                    <p class="card-text">
+                                        Status:
+                                        {% if container.running %}
+                                            <span class="badge rounded-pill text-bg-success">aktiv</span>
+                                        {% else %}
+                                            <span class="badge rounded-pill text-bg-danger">inaktiv</span>
+                                        {% endif %}
+                                    </p>
+                                    <p class="card-text">
+                                        Git Status:
+                                        {% if container.latest %}
+                                            <span class="badge rounded-pill text-bg-success">aktuell</span>
+                                        {% else %}
+                                            <span class="badge rounded-pill text-bg-warning">veraltet</span>
+                                        {% endif %}
+                                    </p>
+                                    {% if loggedIn  %}
+                                        <button class="btn btn-primary update-btn" data-container="{{ container.name }}">
+                                            Aktualisieren
+                                        </button>
+                                        <button class="btn btn-warning restart-btn" data-container="{{ container.name }}">
+                                            Neustarten
+                                        </button>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </main>
+    </body>
+</html>

@@ -1,0 +1,21 @@
+{
+    "name": "spielwiese-me/manager",
+    "type": "project",
+    "license": "GPL-3.0-or-later",
+    "autoload": {
+        "psr-4": {
+            "Spielwiese\\Manager\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "RobertWesner",
+            "email": "robert@wesner.io"
+        }
+    ],
+    "require": {
+        "php": "^8.3",
+        "twig/twig": "^3.0",
+        "guzzlehttp/psr7": "^2.7"
+    }
+}

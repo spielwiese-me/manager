@@ -1,0 +1,8 @@
+.git
+.gitignore
+.idea
+vendor
+docker-compose*
+docker/web
+README.md
+LICENSE

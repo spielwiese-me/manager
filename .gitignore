@@ -1,0 +1,5 @@
+vendor
+docker-compose.override.yml
+managed.json
+**/node_modules
+auth.sha256
