@@ -71,6 +71,7 @@ final class ContainerService
         $path = self::getConfiguration()[$container];
         self::runShellInDirectory('ls -la /opt/beispiel/docker/web/default.conf', $path);
         self::runCompose('down', $path);
+        self::runCompose('build --no-cache', $path);
         self::runCompose('up -d', $path);
     }
 }
