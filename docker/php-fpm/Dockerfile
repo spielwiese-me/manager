@@ -14,10 +14,12 @@ RUN ln -s /usr/local/lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm
 COPY . /var/www/html
 
 COPY ./docker/php-fpm/docker.conf /usr/local/etc/php-fpm.d/zzz-docker.conf
+COPY ./docker/php-fpm/run.sh /run.sh
+RUN chmod +x /run.sh
 
 WORKDIR /var/www/html
 
 RUN git config --global --add safe.directory '*'
 RUN composer install
 
-CMD ["php-fpm", "-R"]
+CMD ["/run.sh"]

@@ -69,8 +69,8 @@ final class ContainerService
         }
 
         $path = self::getConfiguration()[$container];
-        echo self::runShellInDirectory('ls -la /opt/beispiel/docker/web/default.conf', $path);
-        echo self::runCompose('down', $path);
-        echo self::runCompose('up -d', $path);
+        self::runShellInDirectory('ls -la /opt/beispiel/docker/web/default.conf', $path);
+        self::runCompose('down', $path);
+        self::runCompose('up -d', $path);
     }
 }
