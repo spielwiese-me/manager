@@ -42,6 +42,7 @@ final class ContainerService
                 $path = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . $path;
             }
 
+            self::runShellInDirectory('git fetch', $path);
             $managed[] = new Managed(
                 $name,
                 $path,
