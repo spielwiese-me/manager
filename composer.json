@@ -15,7 +15,6 @@
     ],
     "require": {
         "php": "^8.3",
-        "twig/twig": "^3.0",
-        "guzzlehttp/psr7": "^2.7"
+        "robertwesner/simple-mvc-php": "0.1.1"
     }
 }

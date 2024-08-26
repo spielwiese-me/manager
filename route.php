@@ -1,12 +1,14 @@
 <?php
 
-use Spielwiese\Manager\Routing\RouterFactory;
+use RobertWesner\SimpleMvcPhp\Routing\RouterFactory;
 
 require __DIR__ . '/vendor/autoload.php';
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+
+RouterFactory::createRouter();
 
 // Buffering to prevent var_dump() from breaking headers
 ob_start();

@@ -1,9 +1,9 @@
 <?php
 
+use RobertWesner\SimpleMvcPhp\Route;
+use RobertWesner\SimpleMvcPhp\Routing\Request;
 use Spielwiese\Manager\Container\ContainerService;
 use Spielwiese\Manager\LoginService;
-use Spielwiese\Manager\Route;
-use Spielwiese\Manager\Routing\Request;
 
 Route::post('/api/login', function (Request $request) {
     $password = $request->get('password');

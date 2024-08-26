@@ -1,7 +1,7 @@
 <?php
 
+use RobertWesner\SimpleMvcPhp\Route;
 use Spielwiese\Manager\LoginService;
-use Spielwiese\Manager\Route;
 use Spielwiese\Manager\Container\ContainerService;
 
 Route::get('/', function () {

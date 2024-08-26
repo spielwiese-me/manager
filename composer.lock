@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f1aeebfbdb1a0e0f282fb5df407c8d4b",
+    "content-hash": "6e010c1db5a0d682d7739e52c029bb5c",
     "packages": [
         {
             "name": "guzzlehttp/psr7",
@@ -273,6 +273,52 @@
                 "source": "https://github.com/ralouphie/getallheaders/tree/develop"
             },
             "time": "2019-03-08T08:55:37+00:00"
+        },
+        {
+            "name": "robertwesner/simple-mvc-php",
+            "version": "v0.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/RobertWesner/simple-mvc-php.git",
+                "reference": "f4374494ece2f69895d50ea8a5225a76cfcc5c74"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/RobertWesner/simple-mvc-php/zipball/f4374494ece2f69895d50ea8a5225a76cfcc5c74",
+                "reference": "f4374494ece2f69895d50ea8a5225a76cfcc5c74",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/psr7": "^2.7",
+                "php": "^8.3",
+                "twig/twig": "^3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^11.3.1",
+                "squizlabs/php_codesniffer": "^3.10.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "RobertWesner\\SimpleMvcPhp\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "RobertWesner",
+                    "email": "robert@wesner.io"
+                }
+            ],
+            "description": "A small library for creating PHP web servers.",
+            "support": {
+                "issues": "https://github.com/RobertWesner/simple-mvc-php/issues",
+                "source": "https://github.com/RobertWesner/simple-mvc-php/tree/v0.1.1"
+            },
+            "time": "2024-08-26T16:37:40+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
@@ -744,7 +790,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": "^8.2"
+        "php": "^8.3"
     },
     "platform-dev": [],
     "plugin-api-version": "2.6.0"
